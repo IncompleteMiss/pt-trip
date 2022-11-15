@@ -1,0 +1,14 @@
+/*
+  :root是一个伪类，表示文档根元素，所有主流浏览器均支持 :root 选择器，除了 IE8 及更早的版本。
+  在:root中声明相当于全局属性，只要当前页面引用了:root segment所在文件，都可以使用var()来引用。
+*/
+
+:root {
+  --primary-color: #ff9854
+}
+
+body {
+  font-family: PingFangSC-Regular, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  background-color: #f7f8fb;
+}
