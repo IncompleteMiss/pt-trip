@@ -4,7 +4,11 @@
 */
 
 :root {
-  --primary-color: #ff9854
+  --primary-color: #ff9854;
+
+  /* !important: 强制生效 */
+  /* 全局修改vant UI库中icon标签大小，任何地方只要用到--van-tabbar-item-icon-size都会被修改掉 */
+  /* --van-tabbar-item-icon-size: 30px !important; */
 }
 
 body {
