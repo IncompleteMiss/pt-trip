@@ -6,19 +6,56 @@
       <img src="@/assets/img/home/banner.webp" alt="">
     </div>
 
-    <div class="location">
-      <div class="city">广州</div>
-      <div class="position">
-        <span class="text">我的位置</span>
-        <img src="@/assets/img/home/icon_location.png" alt="">
-      </div>
-    </div>
+    <!-- <home-search-box :hot-suggests="hotSuggests"></home-search-box> -->
+    <home-search-box />
+
+    <home-categories/>
+
+    <home-content/>
+
+    <button @click="moreData()"> 加载更多 </button>
   </div>
 </template>
 
 <script setup>
 
+  import { ref } from 'vue'
   import HomeNavBar from '@/views/home/cpns/home-nav-bar.vue'
+  import HomeSearchBox from '@/views/home/cpns/home-search-box.vue'
+  import HomeCategories from '@/views/home/cpns/home-categories.vue'
+  import HomeContent from '@/views/home/cpns/home-content.vue'
+  import useHomeStore from '@/stores/modules/home.js'
+
+  // import hyRequest from '@/service/request/index.js'
+
+  // 发送网络请求
+  const homeStore = useHomeStore()
+  homeStore.fetchHotSuggestData()
+  homeStore.fetchCategoriesData()
+  // let currentPage = 1
+  homeStore.fetchHouseListData()
+
+  const moreData = () => {
+    homeStore.fetchHouseListData()
+  }
+
+  /*
+  // 发送网络请求
+  // 1.热门建议
+  const hotSuggests = ref([])
+  hyRequest.get({
+    url: '/home/hotSuggests'
+  }).then(res => {
+    hotSuggests.value = res.data
+  })
+  // 2.推荐分类
+  const categories = ref([])
+  hyRequest.get({
+    url: '/home/categories'
+  }).then(res => {
+    categories.value = res.data
+  })
+  */
 
 </script>
 
@@ -27,33 +64,6 @@
   .banner {
     img {
       width: 100%;
-    }
-  }
-
-  .location {
-    display: flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 20px;
-
-    .city {
-      flex: 1;
-    }
-
-    .position {
-      width: 74px;
-      display: flex;
-      align-items: center;
-
-      .text {
-        font-size: 14px;
-      }
-
-      img {
-        margin-left: 1px;
-        width: 16px;
-        height: 16px;
-      }
     }
   }
 

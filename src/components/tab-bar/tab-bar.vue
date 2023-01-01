@@ -30,6 +30,7 @@
 
 <style lang="less" scoped>
   .tab-bar {
+    height: 50px;
     //  局部定义一个变量，只针对.tab-bar子元素才生效
     //--van-tabbar-item-icon-size: 30px !important;
 

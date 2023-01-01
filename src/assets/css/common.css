@@ -5,14 +5,32 @@
 
 :root {
   --primary-color: #ff9854;
+  --line-color: #f2f2f2;
+  --theme-liner-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 
   /* !important: 强制生效 */
   /* 全局修改vant UI库中icon标签大小，任何地方只要用到--van-tabbar-item-icon-size都会被修改掉 */
   /* --van-tabbar-item-icon-size: 30px !important; */
+
+  /* 全局修改：修改search图标样式 */
+  --van-search-left-icon-color: var(--primary-color) !important;
 }
 
 body {
   font-family: PingFangSC-Regular, Helvetica Neue, sans-serif;
   font-size: 14px;
   background-color: #f7f8fb;
+}
+
+/* 覆盖底部tabbar */
+.top-page {
+  position: relative;
+  z-index: 9;
+  height: 100vh;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.bottom-gray-line {
+  border-bottom: 1px solid var(--line-color);
 }
