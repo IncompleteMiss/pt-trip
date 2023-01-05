@@ -14,14 +14,14 @@
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">{{ startDate }}</span>
+          <span class="time">{{ startDateStr }}</span>
         </div>
       </div>
       <div class="stay">共{{stayCount}}晚</div>
       <div class="end">
         <div class="date">
           <span class="tip">离店</span>
-          <span class="time">{{ endDate }}</span>
+          <span class="time">{{ endDateStr }}</span>
         </div>
       </div>
     </div>
@@ -65,8 +65,9 @@
   import { useRouter } from 'vue-router'
   import useCityStore from '@/stores/modules/city.js'
   import {storeToRefs} from 'pinia'
-  import {ref} from 'vue'
+  import {computed, ref} from 'vue'
   import useHomeStore from '@/stores/modules/home.js'
+  import useMainStore from '@/stores/modules/main.js'
   import { formatMonthDay, getDiffDays } from '@/utils/format_date.js'
 
   const router = useRouter()
@@ -103,13 +104,12 @@
   const { currentCity } = storeToRefs(cityStore)
 
   // 日期范围的处理
-  const nowDate = new Date()
-  const newDate = new Date()
-  newDate.setDate(nowDate.getDate() + 1)
+  const mainStore = useMainStore()
+  const { startDate, endDate } = storeToRefs(mainStore)
 
-  const startDate = ref(formatMonthDay(nowDate))
-  const endDate = ref(formatMonthDay(newDate))
-  const stayCount = ref(getDiffDays(nowDate, newDate))
+  const startDateStr = computed(() => formatMonthDay(startDate.value))
+  const endDateStr = computed(() => formatMonthDay(endDate.value))
+  const stayCount = ref(getDiffDays(startDate.value, endDate.value))
 
   let showCalendar = ref(false)
   const formatter = (day) => {
@@ -125,8 +125,8 @@
     const selectStartDate = value[0]
     const selectEndDate = value[1]
     console.log(selectStartDate, selectEndDate)
-    startDate.value = formatMonthDay(selectStartDate)
-    endDate.value = formatMonthDay(selectEndDate)
+    mainStore.startDate = selectStartDate
+    mainStore.endDate = selectEndDate
     stayCount.value = getDiffDays(selectStartDate, selectEndDate)
 
     // 2.隐藏日历

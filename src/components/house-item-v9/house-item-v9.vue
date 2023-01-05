@@ -55,7 +55,7 @@
         position: absolute;
         bottom: 0;
         padding: 8px 10px;
-        color: #ffffff;
+        color: rgb(255, 255, 255);
 
         .summary {
           font-size: 12px;

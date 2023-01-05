@@ -26,6 +26,7 @@
 
   .content {
     padding: 10px 8px;
+    margin: 1px 0;
 
     .title {
       font-size: 22px;
