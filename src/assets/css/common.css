@@ -13,6 +13,7 @@
   /* --van-tabbar-item-icon-size: 30px !important; */
 
   /* 全局修改：修改search图标样式 */
+  --van-primary-color: var(--primary-color);
   --van-search-left-icon-color: var(--primary-color) !important;
 }
 
@@ -33,4 +34,25 @@ body {
 
 .bottom-gray-line {
   border-bottom: 1px solid var(--line-color);
+}
+
+.icon_check {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../img/detail/icon_check.png) 0 0 / 100% 100%;
+}
+
+.detail_icon_chat {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background: url(../img/detail/icon_chat.png) 0 0 / 100% 100%;
+}
+
+.detail_icon_order {
+  display: block;
+  width: 14px;
+  height: 17px;
+  background: url(../img/detail/icon_order.png) 0 0 / 100% 100%;
 }
