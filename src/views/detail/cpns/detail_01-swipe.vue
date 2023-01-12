@@ -14,7 +14,7 @@
         </div>
       -->
         <div class="indicator">
-          <template v-for="(value, key, index) in swipeGroup" :key="key">
+          <template v-for="(value, key) in swipeGroup" :key="key">
             <span
               class="item"
               :class="{ active: swipeData[props.active]?.enumPictureCategory == key }"
