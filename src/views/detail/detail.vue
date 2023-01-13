@@ -111,6 +111,8 @@
     return Object.keys(sectionEls.value)
   })
 
+  let isClick = false
+  let currentDistance = -1
   const tabClick = (index) => {
     const tabControlHeight = tabControlRef.value.$el.offsetHeight
 
@@ -118,21 +120,32 @@
 
     const key = Object.keys(sectionEls.value)[index]
     const el = sectionEls.value[key]
-    let instance = el.offsetTop
+    let distance = el.offsetTop
 
     if (index !== 0) {
-      instance = instance - tabControlHeight
+      distance = distance - tabControlHeight
     }
+
+    isClick = true
+    currentDistance  = distance
 
     detailRef.value.scrollTo({
       // landlordRef.value.$el: 拿到组件元素中的根元素
-      top: instance,
+      top: distance,
       behavior: 'smooth'
     })
   }
 
   // 监听滚动，滚动时匹配对应的tabControl的index
   watch(scrollTop, (newValue) => {
+    if (newValue === currentDistance) {
+      isClick = false
+    }
+
+    if (isClick) {
+      return
+    }
+
     // 1.获取所有的区域的offsetTops
     const els = Object.values(sectionEls.value)
     const values = els.map(el => el.offsetTop)
